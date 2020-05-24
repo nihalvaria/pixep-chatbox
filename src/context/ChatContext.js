@@ -63,7 +63,19 @@ const ChatContextProvider = (props) => {
 
 
     return (
-        <ChatContext.Provider value={{ users: users, messages: messages, tab: tab, setTab: toggleTab, setEdit: setEdit, myname: name, addMessage: addMessage }}>{props.children}</ChatContext.Provider>
+        <ChatContext.Provider 
+        value={{
+            users,
+            messages,
+            tab,
+            toggleTab,
+            setEdit,
+            name,
+            addMessage,
+            deleteMessage
+        }}>
+            {props.children}
+        </ChatContext.Provider>
     );
 };
 

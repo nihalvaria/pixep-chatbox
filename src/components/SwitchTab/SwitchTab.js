@@ -5,11 +5,11 @@ import {ChatContext} from "../../context/ChatContext"
 
 const SwitchTab = props => {
 
-  const {users, setTab, tab} = useContext(ChatContext)
+  const {users, toggleTab, tab} = useContext(ChatContext)
 
   const handleSwitch = (e) => {
     const { id } = e.target
-    setTab(id)
+    toggleTab(id)
   }
 
   return (

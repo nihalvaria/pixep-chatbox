@@ -5,7 +5,7 @@ import shortid from 'shortid';
 
 const ChatInput = props => {
   // editing, setEdit, 
-  const {myname, addMessage} = useContext(ChatContext)    
+  const {addMessage} = useContext(ChatContext)    
   const [input, setInput] = useState("")
   
   const handleChange = e => [
