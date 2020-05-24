@@ -64,7 +64,7 @@ const ChatContextProvider = (props) => {
             text: val,
             isEdited: false,
             isDeleted: false,
-            ts: new Date().toLocaleString(),
+            ts: new Date().toTimeString().slice(0, 5),
         };
         connection.send(JSON.stringify({type: "TEXT" ,text}));
     };
