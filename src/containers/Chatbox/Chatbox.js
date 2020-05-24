@@ -12,7 +12,7 @@ const Chatbox = props => {
   console.log(users)
 
   return (
-    <div className="Chatbox h-100 w-25 bg-white">
+    <div className="Chatbox h-100 bg-white">
       <SwitchTab />
       { tab === "participants" ? <Users/> : <Messages/>}
     </div>

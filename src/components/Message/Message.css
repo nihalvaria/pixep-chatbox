@@ -4,6 +4,7 @@
 
 .top-text, .text-body{
     width: 90%;
+    overflow-wrap: break-word;
 }
 
 .edit-con{

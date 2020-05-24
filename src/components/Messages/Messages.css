@@ -4,4 +4,5 @@
 
 .messages-con{
     height: 90%;
+    overflow-y: scroll;
 }

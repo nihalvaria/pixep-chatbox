@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import './Message.css';
 import {ChatContext} from "../../context/ChatContext"
 
@@ -19,7 +19,7 @@ const Message = ({id, name, text, isEdited, isDeleted, ts}) => {
         <div className="Message flex flex-column w-100">
             <div className="top-text flex justify-content-start position-relative">
                 <p className="name font-weight-bold m-0">{name}</p>
-                <span className="ts text-muted ml-2">{ts.toTimeString().split(" ")[0]}</span>
+                <span className="ts text-muted ml-2">{ts}</span>
                 <div className="edit-con flex position-absolute">
                     {isEdited && !isDeleted && <p className="text-info m-0 mx-2">Edited</p>}
                     <i className="material-icons btn" onClick={handleEdit}>mode_edit</i>
