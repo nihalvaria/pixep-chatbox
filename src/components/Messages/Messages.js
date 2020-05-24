@@ -3,7 +3,7 @@ import './Messages.css';
 
 const Messages = props => {
   return (
-    <div className="Messages">
+    <div className="Messages w-100">
      
     </div>
   );

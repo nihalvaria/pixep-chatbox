@@ -3,7 +3,7 @@ import './Users.css';
 
 const Users = props => {
   return (
-    <div className="Users">
+    <div className="Users w-100">
      
     </div>
   );

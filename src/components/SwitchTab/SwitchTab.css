@@ -1,0 +1,9 @@
+.SwitchTab{
+    height: 15%;
+    background-color: #dedede
+}
+
+.selectedTab{
+    background-color: white;
+    height: 100%;
+}

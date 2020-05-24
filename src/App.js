@@ -4,8 +4,8 @@ import Chatbox from "./containers/Chatbox/Chatbox"
 
 const App = props => {
   return (
-    <div className="App">
-        <Chatbox />      
+    <div className="App h-100 w-100 flex justify-content-end bg-dark">
+        <Chatbox />  
     </div>
   );
 }
