@@ -29,7 +29,10 @@ const ChatContextProvider = (props) => {
             switch(e.type){
                 case "TEXT" : setMessages((prev) => [...prev, e.text]);
                     break;
-                case "DELETE" : console.log("delete");
+                case "DELETE" : setMessages((prev) => prev.map(m => {
+                        if(m.id === e.id) m.isDeleted = true
+                        return m
+                    }));
                     break;
 			    default:
 				    break
@@ -54,10 +57,15 @@ const ChatContextProvider = (props) => {
     };
 
     const deleteMessage = (id) => {
-        connection.send(id)
+        // const deletedTexts = messages.map(m => {
+        //     m.isDeleted = m.id === id ? true : false
+        //     return m
+        // })
+        // setMessages(() => messages.map(m => m.isDeleted = m.id === id ? true : false))
+        connection.send(JSON.stringify({type: "DELETE" , id}))
     }
     
-    const setEdit = (id) => {
+    const editMessage = (id) => {
         console.log(id);
     };
 
@@ -65,13 +73,13 @@ const ChatContextProvider = (props) => {
     return (
         <ChatContext.Provider 
         value={{
+            name,
             users,
-            messages,
             tab,
             toggleTab,
-            setEdit,
-            name,
+            messages,
             addMessage,
+            editMessage,
             deleteMessage
         }}>
             {props.children}

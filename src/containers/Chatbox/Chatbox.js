@@ -9,7 +9,7 @@ const Chatbox = props => {
 
   const {users, tab} = useContext(ChatContext)
 
-  console.log(users)
+  // console.log(users)
 
   return (
     <div className="Chatbox h-100 bg-white">

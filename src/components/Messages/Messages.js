@@ -8,8 +8,6 @@ const Messages = props => {
 
   const {messages} = useContext(ChatContext)    
 
-  console.log(messages)
-
   return (
     <div className="Messages w-100">
       <div className="messages-con">
