@@ -34,18 +34,17 @@ const ChatContextProvider = (props) => {
                 case "TEXT" : setMessages((prev) => [...prev, e.text]);
                     break;
                 case "DELETE" : setMessages((prev) => prev.map(m => {
-                        if(m.id === e.id) m.isDeleted = true
-                        return m
-                    }));
+                                    if(m.id === e.id) m.isDeleted = true
+                                    return m
+                                }));
                     break;
                 case "EDIT" : setMessages((prev) => prev.map(m => {
-                    if(m.id === e.data.id) {
-                        m.isEdited = true
-                        m.text = e.text
-                        console.log(e.text, e.data.id, m.text, e.text)
-                    }
-                    return m
-                })); 
+                                if(m.id === e.data.id) {
+                                    m.isEdited = true
+                                    m.text = e.text
+                                }
+                                return m
+                            })); 
                     break;
 			    default:
 				    break

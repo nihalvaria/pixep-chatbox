@@ -5,4 +5,11 @@
 .messages-con{
     height: 90%;
     overflow-y: scroll;
+    overflow-y: scroll;
+    overscroll-behavior-y: contain;
+    scroll-snap-type: y mandatory;
+}
+  
+.messages-con > div:last-child {
+    scroll-snap-align: end;
 }

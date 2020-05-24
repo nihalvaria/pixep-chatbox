@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import './ChatInput.css';
 import {ChatContext} from "../../context/ChatContext"
 
@@ -7,7 +7,6 @@ const ChatInput = props => {
   const {addMessage, editing, setEditing, editMessage, input, setInput} = useContext(ChatContext)    
 
   const handleChange = e => {
-    e.persist();
     setInput(e.target.value)
   }
 
