@@ -7,9 +7,7 @@ import  Messages from "../../components/Messages/Messages"
 
 const Chatbox = props => {
 
-  const {users, tab} = useContext(ChatContext)
-
-  // console.log(users)
+  const {tab} = useContext(ChatContext)
 
   return (
     <div className="Chatbox h-100 bg-white">

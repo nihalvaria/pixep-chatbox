@@ -7,13 +7,14 @@ const connection = new WebSocket("ws://localhost:8080");
 const ChatContextProvider = (props) => {
     const [messages, setMessages] = useState([]);
     const [users, setUsers] = useState([]);
-    const [tab, setTab] = useState("chat");
+    const [tab, setTab] = useState("participants");
     const [editing, setEditing] = useState(null);
     const [name] = useState(new Chance().first());
 
     useEffect(() => {
         connection.onopen = (event) => {
             console.log("WebSocket is open now.");
+            connection.send(JSON.stringify({type: "USER" , name}))
         };
 
         connection.onclose = (event) => {
@@ -27,12 +28,16 @@ const ChatContextProvider = (props) => {
         connection.onmessage = (event) => {
             const e = JSON.parse(event.data)
             switch(e.type){
+                case "USER" : setUsers((prev) => [...prev, e.name])
+                    break;
                 case "TEXT" : setMessages((prev) => [...prev, e.text]);
                     break;
                 case "DELETE" : setMessages((prev) => prev.map(m => {
                         if(m.id === e.id) m.isDeleted = true
                         return m
                     }));
+                    break;
+                case "EDIT" : console.log("edit !") 
                     break;
 			    default:
 				    break
@@ -42,6 +47,7 @@ const ChatContextProvider = (props) => {
 
     const toggleTab = (t) => {
         setTab(t);
+        console.log(users)
     };
 
     const addMessage = (val) => {
@@ -57,11 +63,6 @@ const ChatContextProvider = (props) => {
     };
 
     const deleteMessage = (id) => {
-        // const deletedTexts = messages.map(m => {
-        //     m.isDeleted = m.id === id ? true : false
-        //     return m
-        // })
-        // setMessages(() => messages.map(m => m.isDeleted = m.id === id ? true : false))
         connection.send(JSON.stringify({type: "DELETE" , id}))
     }
     
