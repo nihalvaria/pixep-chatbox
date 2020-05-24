@@ -5,11 +5,12 @@ const ChatContext = React.createContext();
 const connection = new WebSocket("ws://localhost:8080");
 
 const ChatContextProvider = (props) => {
-    const [messages, setMessages] = useState([]);
-    const [users, setUsers] = useState([]);
-    const [tab, setTab] = useState("participants");
-    const [editing, setEditing] = useState(null);
     const [name] = useState(new Chance().first());
+    const [tab, setTab] = useState("chat");
+    const [users, setUsers] = useState([]);
+    const [editing, setEditing] = useState([]);
+    const [messages, setMessages] = useState([]);
+    const [input, setInput] = useState("")
 
     useEffect(() => {
         connection.onopen = (event) => {
@@ -37,7 +38,14 @@ const ChatContextProvider = (props) => {
                         return m
                     }));
                     break;
-                case "EDIT" : console.log("edit !") 
+                case "EDIT" : setMessages((prev) => prev.map(m => {
+                    if(m.id === e.data.id) {
+                        m.isEdited = true
+                        m.text = e.text
+                        console.log(e.text, e.data.id, m.text, e.text)
+                    }
+                    return m
+                })); 
                     break;
 			    default:
 				    break
@@ -47,7 +55,6 @@ const ChatContextProvider = (props) => {
 
     const toggleTab = (t) => {
         setTab(t);
-        console.log(users)
     };
 
     const addMessage = (val) => {
@@ -66,10 +73,13 @@ const ChatContextProvider = (props) => {
         connection.send(JSON.stringify({type: "DELETE" , id}))
     }
     
-    const editMessage = (id) => {
-        console.log(id);
+    const editMessage = (text, data) => {
+        connection.send(JSON.stringify({type: "EDIT" , text, data}))
     };
 
+    const setInputText = (val) => {
+        setInput(val)
+    }
 
     return (
         <ChatContext.Provider 
@@ -77,7 +87,12 @@ const ChatContextProvider = (props) => {
             name,
             users,
             tab,
+            input,
+            setInputText,
+            setInput,
             toggleTab,
+            editing,
+            setEditing,
             messages,
             addMessage,
             editMessage,

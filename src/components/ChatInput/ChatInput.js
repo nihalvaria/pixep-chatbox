@@ -1,19 +1,25 @@
 import React, { useState, useContext } from 'react';
 import './ChatInput.css';
 import {ChatContext} from "../../context/ChatContext"
-import shortid from 'shortid';
 
 const ChatInput = props => {
-  // editing, setEdit, 
-  const {addMessage} = useContext(ChatContext)    
-  const [input, setInput] = useState("")
-  
-  const handleChange = e => [
-      setInput(e.target.value)
-  ]
+
+  const {addMessage, editing, setEditing, editMessage, input, setInput} = useContext(ChatContext)    
+
+  const handleChange = e => {
+    e.persist();
+    setInput(e.target.value)
+  }
 
   const handleText = val => {
-    val.length > 0 && addMessage(val)
+    if(editing.length === 0){
+      val.length > 0 && addMessage(val)
+    }
+    else{
+      editMessage(val, editing)
+      setEditing([])
+      setInput('')
+    }
   }
 
   return (

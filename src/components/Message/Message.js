@@ -4,15 +4,16 @@ import {ChatContext} from "../../context/ChatContext"
 
 const Message = props => {
 
-    const {name, editMessage, deleteMessage} = useContext(ChatContext)  
+    const {name, setInput,  deleteMessage, setEditing} = useContext(ChatContext)  
 
     const handleDelete = () => {
         deleteMessage(props.id)
     }
     
     const handleEdit = () => {
-        editMessage(props.id)
-    }
+        setEditing({id: props.id, text : props.text })
+        setInput(props.text)
+    }   
 
     return (
         <div className="Message flex flex-column w-100">
