@@ -1,0 +1,15 @@
+.Message{
+
+}
+
+.top-text, .text-body{
+    width: 90%;
+}
+
+.edit-con{
+    right: 0;
+}
+
+.material-icons{
+    font-size: 1rem;
+}

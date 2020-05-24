@@ -6,7 +6,8 @@ class ChatContextProvider extends Component {
     state = {
         messages : [],
         users : [],
-        tab: "participants"
+        tab: "chat",
+        editing: null
     }
 
     toggleTab = (t) => {
@@ -18,11 +19,21 @@ class ChatContextProvider extends Component {
             }
         })
     }
+
+    setEdit = (id) => {
+        console.log(id)
+    }
     
     
     render() {
         return (
-            <ChatContext.Provider value={{users : this.state.users, messages: this.state.messages,tab: this.state.tab ,setTab : this.toggleTab}}>
+            <ChatContext.Provider value={{users : this.state.users,
+             messages: this.state.messages,
+             tab: this.state.tab,
+             setTab : this.toggleTab,
+             editing: this.state.editing,
+             setEdit: this.setEdit
+             }}>
                 {this.props.children}
             </ChatContext.Provider>
         )
